@@ -1,12 +1,25 @@
-function plotShadedSD(timeframe,Data, SD)
+function plotShadedSD(varargin)
+% plotShadedSD(timeframe,Data,SD) or plotShadedSD(fh,timeframe,Data,SD)
+
+if ishandle(varargin{1})
+    fh = varargin{1};
+    timeframe = varargin{2};
+    Data = varargin{3};
+    SD = varargin{4};
+else
+    timeframe = varargin{1};
+    Data = varargin{2};
+    SD = varargin{3};
+    fh = figure;
+end
 
 numpts = length(timeframe);
 xIdx  = [1:numpts numpts:-1:1];
 xarea = timeframe(xIdx);
 % xarea = xIdx;
 
-figure;
-plotCE(timeframe,Data);
+
+plotCE(fh,timeframe,Data);
 hold on;
 lines = flipud(get(gca,'Children'));
 for i = 1:size(Data,2)
