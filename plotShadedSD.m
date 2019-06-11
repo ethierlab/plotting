@@ -25,11 +25,11 @@ xIdx  = [1:numpts numpts:-1:1];
 xarea = timeframe(xIdx);
 % xarea = xIdx;
 
-ax = axes(fh);
+
 hold on;
 
 if isempty(col_str)
-    plot(ax,timeframe,Data);
+    plot(fh,timeframe,Data);
 else
     for i = 1:size(Data,2)
         plot(ax,timeframe,Data(:,i),col_str{i});
