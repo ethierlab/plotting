@@ -21,22 +21,24 @@ else
 end
 
 numpts = length(timeframe);
-xIdx  = [1:numpts numpts:-1:1];
-xarea = timeframe(xIdx);
+xIdx   = [1:numpts numpts:-1:1];
+xarea  = timeframe(xIdx);
 % xarea = xIdx;
+ax     = gca(fh);
 
 
 hold on;
 
 if isempty(col_str)
-    plot(fh,timeframe,Data);
+    plot(ax,timeframe,Data);
 else
     for i = 1:size(Data,2)
         plot(ax,timeframe,Data(:,i),col_str{i});
     end
 end
+pretty_fig;
 
-lines = flipud(get(gca,'Children'));
+lines = flipud(get(ax,'Children'));
 for i = 1:size(Data,2)
     
     ytop = Data(:,i) + SD(:,i);
