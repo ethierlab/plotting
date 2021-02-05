@@ -1,9 +1,9 @@
 function fh = plotShadedSD(varargin)
-% plotShadedSD(timeframe,Data,SD,[colors_cellarray]) or plotShadedSD(fh,timeframe,Data,SD,[colors_cellarray])
+% plotShadedSD(timeframe,Data,SD,[colors_cellarray]) or plotShadedSD(ah,timeframe,Data,SD,[colors_cellarray])
 col_str = {};
 
 if ishandle(varargin{1})
-    fh = varargin{1};
+    ah = varargin{1};
     timeframe = varargin{2};
     Data = varargin{3};
     SD = varargin{4};
@@ -17,28 +17,28 @@ else
     if nargin>3
         col_str = varargin{4};
     end
-    fh = figure;
+    figure;
+    ah = gca;
 end
 
 numpts = length(timeframe);
 xIdx   = [1:numpts numpts:-1:1];
 xarea  = timeframe(xIdx);
 % xarea = xIdx;
-ax     = gca(fh);
 
 
 hold on;
 
 if isempty(col_str)
-    plot(ax,timeframe,Data);
+    plot(ah,timeframe,Data);
 else
     for i = 1:size(Data,2)
-        plot(ax,timeframe,Data(:,i),col_str{i});
+        plot(ah,timeframe,Data(:,i),col_str{i});
     end
 end
 pretty_fig;
 
-lines = flipud(get(ax,'Children'));
+lines = flipud(get(ah,'Children'));
 for i = 1:size(Data,2)
     
     ytop = Data(:,i) + SD(:,i);
