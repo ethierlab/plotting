@@ -1,4 +1,4 @@
-function fh = plotShadedSD(varargin)
+function ah = plotShadedSD(varargin)
 % plotShadedSD(timeframe,Data,SD,[colors_cellarray]) or plotShadedSD(ah,timeframe,Data,SD,[colors_cellarray])
 col_str = {};
 
